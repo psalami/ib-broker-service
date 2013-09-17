@@ -13,6 +13,8 @@ import com.patricksalami.broker.IbBroker;
 import com.patricksalami.model.Buy;
 import com.patricksalami.model.Sell;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RooWebJson(jsonObject = Sell.class)
 public class SellController {
 	
+	public static Logger LOG = LoggerFactory.getLogger(SellController.class);
+	
 	@Autowired
 	private IbBroker ibBroker;
 	
@@ -39,10 +43,10 @@ public class SellController {
         headers.add("Content-Type", "application/text");
         Sell sell = Sell.fromJsonToSell(json);
         
-        System.out.println("received sell order for " + sell.getSymbol());
+        LOG.info("received sell order for " + sell.getSymbol());
         
         if(!ibBroker.isInitialized()){
-        	System.out.println("broker not yet initialized. Initializing now...");
+        	LOG.info("broker not yet initialized. Initializing now...");
         	ibBroker.initialize();
         	Thread.sleep(5000);
         }
@@ -51,20 +55,19 @@ public class SellController {
         
         ConcurrentHashMap<String,Integer> portfolio = ibBroker.getPortfolio();
 		if(portfolio.containsKey(sell.getSymbol()) && portfolio.get(sell.getSymbol()) != 0){
-			System.out.println("WARN: we already have a position for symbol: " + sell.getSymbol() + " with " + portfolio.get(sell.getSymbol()) + " shares");
+			LOG.warn("we already have a position for symbol: " + sell.getSymbol() + " with " + portfolio.get(sell.getSymbol()) + " shares");
 			return new ResponseEntity<String>(headers, HttpStatus.METHOD_NOT_ALLOWED);
 		}
 		
-		System.out.println("proceeding with sell order");
 		sell.persist();
 		
-		System.out.println("persisted to DB");
+		LOG.info("persisted to DB");
 		
         try{
         	ibBroker.sellOrder(sell);
-        	System.out.println("submitted to system");
+        	LOG.info("submitted to system");
         }catch(Exception e){
-        	System.out.println("exception: " + e + ": " + e.getLocalizedMessage());
+        	LOG.error("exception: " + e + ": " + e.getLocalizedMessage());
         	e.printStackTrace();
         }
         
@@ -74,7 +77,7 @@ public class SellController {
 	@RequestMapping(method = RequestMethod.GET, value="initialize")
 	public ResponseEntity<String> initialize() throws InterruptedException{
         if(!ibBroker.isInitialized()){
-        	System.out.println("broker not yet initialized. Initializing now...");
+        	LOG.info("broker not yet initialized. Initializing now...");
         	ibBroker.initialize();
         	Thread.sleep(5000);
         }

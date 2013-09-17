@@ -5,6 +5,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.patricksalami.broker.IbBroker;
 import com.patricksalami.model.Buy;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RooWebJson(jsonObject = Buy.class)
 public class BuyController {
 	
+	public static Logger LOG = LoggerFactory.getLogger(BuyController.class);
+	
 	@Autowired
 	private IbBroker ibBroker;
 
@@ -32,24 +36,24 @@ public class BuyController {
         headers.add("Content-Type", "application/text");
         Buy buy = Buy.fromJsonToBuy(json);
         
-        System.out.println("received buy order for " + buy.getSymbol());
+        LOG.info("received buy order for " + buy.getSymbol());
 
         if(!ibBroker.isInitialized()){
-        	System.out.println("broker not yet initialized. Initializing now...");
+        	LOG.info("broker not yet initialized. Initializing now...");
         	ibBroker.initialize();
         	Thread.sleep(5000);
         }
         
 		ConcurrentHashMap<String,Integer> portfolio = ibBroker.getPortfolio();
 		if(portfolio.containsKey(buy.getSymbol()) && portfolio.get(buy.getSymbol()) != 0){
-			System.out.println("WARN: we already have a position for symbol: " + buy.getSymbol() + " with " + portfolio.get(buy.getSymbol()) + " shares");
+			LOG.warn("we already have a position for symbol: " + buy.getSymbol() + " with " + portfolio.get(buy.getSymbol()) + " shares");
 			return new ResponseEntity<String>(headers, HttpStatus.METHOD_NOT_ALLOWED);
 		}
 		buy.persist();
         try{
         	ibBroker.buyOrder(buy);
         }catch(Exception e){
-        	System.out.println("exception: " + e + ": " + e.getLocalizedMessage());
+        	LOG.error("exception: " + e + ": " + e.getLocalizedMessage());
         	e.printStackTrace();
         }
         
