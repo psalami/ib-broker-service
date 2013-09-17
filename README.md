@@ -3,7 +3,7 @@
 This is a RESTful web service that interfaces with the Interactive Brokers (IB) API to make trades on behalf of the client. Any client that can make HTTP requests can call this service to make trades, without a need to implement the full IB API on the client. A long (short) position is opened by the service using a limit order, in response to a simple REST call. The parameters indicate the asset to buy (sell), the duration for which to keep the position open and the percentage of the portfolio to allocate to the position. The service will first calculate the number of shares to buy (sell) and then checks whether or not sufficient cash is available in the account to fill the position. This service is particularly useful for algorithmic trading of assets in response to certain real-time events.
 This is a work in progress. Future iterations will include support for stop-loss orders as well as additional exit conditions (manually exiting a position, exiting a position if certain market conditions are met, etc).
 
-The service is currently optimized for trading equities but other asset classes are be possible as well.
+The service is currently optimized for trading equities but other asset classes are possible as well.
 
 ## Prerequisites
 * An instance of Trader Workstation (TWS) or the IB gateway that is signed into your IB account and accepting API calls
