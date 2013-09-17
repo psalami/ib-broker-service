@@ -15,6 +15,17 @@ import com.patricksalami.model.BrokerOrder;
 import com.patricksalami.model.Buy;
 import com.patricksalami.model.Sell;
 
+/**
+ * This class is intended to go through open positions that are ready to be closed
+ * based on their expiration time and closes the positions.
+ * 
+ * Background processes don't seem to work as expected in Spring Roo,
+ * therefore it is necessary for now to have an external process that
+ * periodically calls the closePositions() method of this class.  
+ * 
+ * @author psalami
+ *
+ */
 public class PositionCloser implements Runnable{
 	
 	private IbBroker broker;
