@@ -33,8 +33,6 @@ public class SellController {
 	@Autowired
 	private IbBroker ibBroker;
 	
-	private ScheduledExecutorService scheduler;
-
 	@RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseEntity<String> createFromJson(@RequestBody String json) throws InterruptedException{
 		HttpHeaders headers = new HttpHeaders();
@@ -82,55 +80,5 @@ public class SellController {
         }
         return new ResponseEntity<String>("{result:\"ok\"}", HttpStatus.OK);
 	}
-	
-	@RequestMapping(method = RequestMethod.GET, value = "startPositionCloser")
-	public ResponseEntity<String> startPositionCloser() throws InterruptedException{
-		System.out.println("starting positions closer");
-		PositionCloser pc = new PositionCloser(ibBroker);
-		scheduler = Executors.newSingleThreadScheduledExecutor();
-		ScheduledFuture<?> future = scheduler.scheduleAtFixedRate(pc, 1, 30, TimeUnit.SECONDS);
-		//scheduler.awaitTermination(20, TimeUnit.SECONDS);
-		return new ResponseEntity<String>("{result:\"ok\"}", HttpStatus.OK);
-	}
-	
-	@RequestMapping(method = RequestMethod.GET, value = "stopPositionCloser")
-	public ResponseEntity<String> stopPositionCloser(){
-		if(scheduler == null){
-			return new ResponseEntity<String>("{result:\"failed\", reason:\"PositionCloser not started; you must start the PositionCloser by calling /startPositionCloser before it can be stopped\"}", HttpStatus.CONFLICT);
-		}
-		scheduler.shutdown();
-		return new ResponseEntity<String>("{result:\"ok\"}", HttpStatus.OK);
-	}
-	
-	@RequestMapping(method = RequestMethod.GET, value = "closePositions")
-	public ResponseEntity<String> closePositions() throws InterruptedException{
-		
-		if(!ibBroker.isInitialized()){
-        	ibBroker.initialize();
-        }
-		
-		PositionCloser pc = new PositionCloser(ibBroker);
-		int totalClosed = pc.closePositions();
-		
-		return new ResponseEntity<String>("{result:\"ok\", totalClosed:" + totalClosed + "}", HttpStatus.OK);
-	}
-	
-	
-	/*
-	@RequestMapping(method = RequestMethod.GET, value = "testPositionCloser")
-	public ResponseEntity<String> testPositionCloser(){
-		  List<Buy> buys = Buy.findBuysByClosedIsNullAndSentIsNotNullAndCloseByDateLessThan(new Date().getTime()).getResultList();
-		for(Buy s : buys){
-			System.out.println("closing sell " + s.getSymbol());
-			//close(s);
-			Date date = new Date();
-			System.out.println("setting closed date for " + s.getSymbol() + " to " + date);
-			s.setClosed(date);
-			s.persist();
-			s.flush();
-			
-		}
-		return new ResponseEntity<String>("{result:\"ok\"}", HttpStatus.OK);
-	}*/
 	
 }
