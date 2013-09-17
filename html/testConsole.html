@@ -1,0 +1,45 @@
+<html>
+
+<head>
+	<script src="js/jquery-1.10.2.min.js"></script>
+
+</head>
+
+<body>
+
+<textarea cols = 100 rows = 30 id="payload">{
+	symbol:"BMW",
+	percentOfAccount:5
+}</textarea><br/>
+
+<button id="submit" value="submit">submit</button>
+
+<p/>
+
+<div id="response"></div>
+
+<script>
+$("#submit").click(function(){
+	console.log("payload: " + $("#payload").val());
+	$.ajax({
+		url:"http://localhost:8080/broker/buy",
+		type:'POST',
+		data:$("#payload").val(),
+		headers: { 
+        	Accept : "application/json; charset=utf-8",
+        	"Content-Type": "application/json; charset=utf-8"
+    	},
+		success:function(response){
+			console.dir(response);
+			$("#response").html(response);
+		}
+	});
+
+});
+
+
+</script>
+
+</body>
+
+</html>

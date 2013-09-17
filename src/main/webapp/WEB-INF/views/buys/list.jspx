@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_patricksalami_model_Buy" items="${buys}" z="CVk4LPoZhQe8PdY+orXGhlXdGq4=">
+        <table:table data="${buys}" id="l_com_patricksalami_model_Buy" path="/buys" z="gzNjqYUl/lzrRCHCb8kMSp+GdsY=">
+            <table:column id="c_com_patricksalami_model_Buy_symbol" property="symbol" z="bZwnmFNs4InDKv6rPx3JFCXrkTQ="/>
+            <table:column id="c_com_patricksalami_model_Buy_percentOfAccount" property="percentOfAccount" z="/X9flH6IJJgWZjhQ1/QcRhASomI="/>
+            <table:column id="c_com_patricksalami_model_Buy_stopPercent" property="stopPercent" z="loFEZYLpvpSU8g6PivRjUYK1ttw="/>
+            <table:column id="c_com_patricksalami_model_Buy_closeByDate" property="closeByDate" z="JDoO0NEAkVVt6unUWFo+9UII394="/>
+            <table:column id="c_com_patricksalami_model_Buy_numContracts" property="numContracts" z="jJD0L+Ufle967ChDOhNakpVEgMI="/>
+            <table:column date="true" dateTimePattern="${buy_sent_date_format}" id="c_com_patricksalami_model_Buy_sent" property="sent" z="/vZjiqY7X6x9PjJp6Y9oQI5RkN4="/>
+        </table:table>
+    </page:list>
+</div>

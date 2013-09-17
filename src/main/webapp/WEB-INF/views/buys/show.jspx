@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_patricksalami_model_Buy" object="${buy}" path="/buys" z="xQTSbmWyxzfaCYEGOItKXyWq+2w=">
+        <field:display field="symbol" id="s_com_patricksalami_model_Buy_symbol" object="${buy}" z="c8AQrEnm3nCQoCjd3C/1LkK8CGo="/>
+        <field:display field="percentOfAccount" id="s_com_patricksalami_model_Buy_percentOfAccount" object="${buy}" z="d0IzsCiE0pJZN3KfsbdUEitL998="/>
+        <field:display field="stopPercent" id="s_com_patricksalami_model_Buy_stopPercent" object="${buy}" z="QsOGM6OAf99a2LiU3S/bENFGMVA="/>
+        <field:display field="closeByDate" id="s_com_patricksalami_model_Buy_closeByDate" object="${buy}" z="LQ9NVR22YQBODpDCa39lS+UAW8s="/>
+        <field:display field="numContracts" id="s_com_patricksalami_model_Buy_numContracts" object="${buy}" z="OKJ9Idd/CbapDKf+XLyafqwtxv4="/>
+        <field:display date="true" dateTimePattern="${buy_sent_date_format}" field="sent" id="s_com_patricksalami_model_Buy_sent" object="${buy}" z="0qlSfnMreu4/A5zseYNQHTA2w8Q="/>
+        <field:display date="true" dateTimePattern="${buy_closed_date_format}" field="closed" id="s_com_patricksalami_model_Buy_closed" object="${buy}" z="NoAPrLKgjFJBAlAS0Zzf4cmK38w="/>
+        <field:display field="exchange" id="s_com_patricksalami_model_Buy_exchange" object="${buy}" z="Gd9k1Z7yxnPeKZ7E0jR6IgkWs5g="/>
+        <field:display field="type" id="s_com_patricksalami_model_Buy_type" object="${buy}" z="rOQX8ngzdT85mUEDRTkdD93CT5A="/>
+        <field:display field="currency" id="s_com_patricksalami_model_Buy_currency" object="${buy}" z="owsSnShTym2Ke2q6LSovttsOSH8="/>
+        <field:display field="openingPrice" id="s_com_patricksalami_model_Buy_openingPrice" object="${buy}" z="HY+3dVKR3mwBB0JwV+6+1B4A0vs="/>
+        <field:display field="closingPrice" id="s_com_patricksalami_model_Buy_closingPrice" object="${buy}" z="ooA1RAqd2hZgjZGxAHZ3lFfvJ9g="/>
+        <field:display field="realizedPnl" id="s_com_patricksalami_model_Buy_realizedPnl" object="${buy}" z="T3CsTP2l7DjRgttQoZJFsU2HpbI="/>
+    </page:show>
+</div>

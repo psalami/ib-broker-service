@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_patricksalami_model_BrokerOrder" items="${brokerorders}" z="KgcDi7yEmGf9q1tOQyw8t5rtdck=">
+        <table:table data="${brokerorders}" id="l_com_patricksalami_model_BrokerOrder" path="/brokerorders" z="U/4aYDKd5n7jd3maGPiT8aBrHWg=">
+            <table:column id="c_com_patricksalami_model_BrokerOrder_symbol" property="symbol" z="jHwhm/1wM7/U1PvUoOEtMcTzVVg="/>
+            <table:column id="c_com_patricksalami_model_BrokerOrder_percentOfAccount" property="percentOfAccount" z="rFcrgUhskyzdb34F/CBTNSDO6NU="/>
+            <table:column id="c_com_patricksalami_model_BrokerOrder_stopPercent" property="stopPercent" z="Rgp9TagR2ytFTRh+e7OWwEUF4ho="/>
+            <table:column id="c_com_patricksalami_model_BrokerOrder_closeByDate" property="closeByDate" z="uymLskX4OqbfagT5+crGb4A9RmA="/>
+            <table:column id="c_com_patricksalami_model_BrokerOrder_numContracts" property="numContracts" z="nl8oRGIcTc4I041CtaMZ06nGwRc="/>
+        </table:table>
+    </page:list>
+</div>

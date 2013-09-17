@@ -1,0 +1,33 @@
+// Spring Roo 1.2.0.M1 [rev 1fa252f] log opened at 2012-02-10 23:40:04
+project --topLevelPackage com.patricksalami --projectName broker --java 6
+// Spring Roo 1.2.0.M1 [rev 1fa252f] log closed at 2012-02-10 23:40:04
+// Spring Roo 1.2.0.M1 [rev 1fa252f] log opened at 2012-02-10 23:40:08
+hint
+jpa setup --database MYSQL --provider HIBERNATE 
+hint
+entity --class ~.model.Buy
+hint
+field string --fieldName symbol --notNull 
+entity --class ~.model.Sell
+json all 
+controller all --package ~.controller.
+web mvc install view --path ext --title "Ext JS WS" --viewName index
+json all 
+web mvc json all
+// Spring Roo 1.2.0.M1 [rev 1fa252f] log closed at 2012-02-11 16:03:55
+// Spring Roo 1.2.0.M1 [rev 1fa252f] log opened at 2012-02-11 21:19:21
+focus --class ~.model.Buy
+finder list --filter sent
+finder list --filter sent
+finder list 
+finder add --finderName findSellsByClosedIsNullAndSentIsNotNullAndCloseByDateLessThan
+finder add --finderName findSellsByClosedIsNullAndSentIsNotNullAndCloseByDateBetween
+finder add --finderName findSellsByClosedIsNullAndCloseByDateLessThan
+finder add --finderName findBuysByClosedIsNullAndSentIsNotNullAndCloseByDateLessThan
+finder add --finderName findSellsByClosedIsNullAndSentIsNotNullAndCloseByDateLessThan
+focus --class ~.model.Sell
+finder add --finderName findSellsByClosedIsNullAndSentIsNotNullAndCloseByDateLessThan
+// Spring Roo 1.2.0.M1 [rev 1fa252f] log opened at 2012-02-13 19:42:15
+// Spring Roo 1.2.0.M1 [rev 1fa252f] log closed at 2012-02-27 19:19:50
+// Spring Roo 1.2.0.M1 [rev 1fa252f] log opened at 2012-02-27 19:22:50
+// Spring Roo 1.2.0.M1 [rev 1fa252f] log closed at 2012-03-15 18:28:31

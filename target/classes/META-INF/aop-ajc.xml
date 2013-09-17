@@ -1,0 +1,24 @@
+<aspectj>
+<aspects>
+<aspect name="com.patricksalami.model.Buy_Roo_Configurable"/>
+<aspect name="com.patricksalami.model.Sell_Roo_Jpa_Entity"/>
+<aspect name="com.patricksalami.model.Buy_Roo_Jpa_Entity"/>
+<aspect name="com.patricksalami.model.Sell_Roo_ToString"/>
+<aspect name="com.patricksalami.model.Sell_Roo_Json"/>
+<aspect name="com.patricksalami.model.Sell_Roo_Finder"/>
+<aspect name="com.patricksalami.controller.BuyController_Roo_Controller"/>
+<aspect name="com.patricksalami.model.Buy_Roo_Entity"/>
+<aspect name="com.patricksalami.model.Sell_Roo_Entity"/>
+<aspect name="com.patricksalami.controller.ApplicationConversionServiceFactoryBean_Roo_ConversionService"/>
+<aspect name="com.patricksalami.model.Buy_Roo_JavaBean"/>
+<aspect name="com.patricksalami.model.Sell_Roo_Configurable"/>
+<aspect name="com.patricksalami.model.Sell_Roo_JavaBean"/>
+<aspect name="com.patricksalami.controller.SellController_Roo_Controller_Json"/>
+<aspect name="com.patricksalami.model.Buy_Roo_ToString"/>
+<aspect name="com.patricksalami.controller.SellController_Roo_Controller"/>
+<aspect name="com.patricksalami.model.Buy_Roo_Json"/>
+<aspect name="com.patricksalami.controller.BuyController_Roo_Controller_Json"/>
+<aspect name="com.patricksalami.model.Buy_Roo_Finder"/>
+</aspects>
+</aspectj>
+
