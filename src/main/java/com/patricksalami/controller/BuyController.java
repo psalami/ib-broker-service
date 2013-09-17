@@ -29,6 +29,16 @@ public class BuyController {
 	@Autowired
 	private IbBroker ibBroker;
 
+	/**
+	 * Attempts to open a new long position of the asset specified in the JSON payload.
+	 * The request must contain the symbol of the asset to be bought, the percentage
+	 * of the total value of the portfolio to allocate to this position, and the date
+	 * when the position shall be closed as a UNIX timestamp in milliseconds.
+	 * 
+	 * @param symbol, closeByDate, percentOfAccount
+	 * @return 200 if position was opened successfully
+	 * @throws InterruptedException
+	 */
 	@RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseEntity<String> createFromJson(@RequestBody String json) throws InterruptedException{
 		

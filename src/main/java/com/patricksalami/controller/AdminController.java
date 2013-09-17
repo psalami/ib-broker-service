@@ -21,6 +21,14 @@ public class AdminController {
 	@Autowired
 	private IbBroker ibBroker;
 	
+	/**
+	 * This call will cause all open positions to be examined to see if their
+	 * closeByDate has been reached. All positions for which the closeByDate
+	 * has been reached that are still open will be closed.
+	 * 
+	 * @return the number of positions that were closed
+	 * @throws InterruptedException
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "closePositions")
 	public ResponseEntity<String> closePositions() throws InterruptedException{
 		

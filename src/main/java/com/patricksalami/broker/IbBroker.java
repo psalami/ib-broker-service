@@ -16,6 +16,10 @@ import com.patricksalami.model.Sell;
 @Component
 public class IbBroker implements Broker {
 	
+	public static final String TWS_HOST = "localhost";
+	
+	public static final int TWS_PORT = 7496;
+	
 	public static EClientSocket clientSocket;
 
 	private static Semaphore apiAccessSemaphore;
@@ -50,8 +54,7 @@ public class IbBroker implements Broker {
         clientSocket = new EClientSocket(wrapper);
         clientSocket.eDisconnect();
         clientId = rand.nextInt();
-        //clientSocket.eConnect("localhost", 4001, clientId);
-        clientSocket.eConnect("localhost", 7496, clientId);
+        clientSocket.eConnect(TWS_HOST, TWS_PORT, clientId);
 	}
 	
 	public void initialize(){
